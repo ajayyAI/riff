@@ -1,0 +1,7 @@
+ref
+public/demo
+node_modules
+.next
+.git
+docs
+*.log
