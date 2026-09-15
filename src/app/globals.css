@@ -1,0 +1,338 @@
+@import "tailwindcss";
+@import "tw-animate-css";
+@import "shadcn/tailwind.css";
+
+@custom-variant dark (&:is(.dark *));
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --font-sans: var(--font-sans);
+  --font-mono: var(--font-geist-mono);
+  --font-heading: var(--font-sans);
+  --color-sidebar-ring: var(--sidebar-ring);
+  --color-sidebar-border: var(--sidebar-border);
+  --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
+  --color-sidebar-accent: var(--sidebar-accent);
+  --color-sidebar-primary-foreground: var(--sidebar-primary-foreground);
+  --color-sidebar-primary: var(--sidebar-primary);
+  --color-sidebar-foreground: var(--sidebar-foreground);
+  --color-sidebar: var(--sidebar);
+  --color-chart-5: var(--chart-5);
+  --color-chart-4: var(--chart-4);
+  --color-chart-3: var(--chart-3);
+  --color-chart-2: var(--chart-2);
+  --color-chart-1: var(--chart-1);
+  --color-ring: var(--ring);
+  --color-input: var(--input);
+  --color-border: var(--border);
+  --color-destructive: var(--destructive);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-accent: var(--accent);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-muted: var(--muted);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-secondary: var(--secondary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-primary: var(--primary);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-popover: var(--popover);
+  --color-card-foreground: var(--card-foreground);
+  --color-card: var(--card);
+  --radius-sm: calc(var(--radius) * 0.6);
+  --radius-md: calc(var(--radius) * 0.8);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) * 1.4);
+  --radius-2xl: calc(var(--radius) * 1.8);
+  --radius-3xl: calc(var(--radius) * 2.2);
+  --radius-4xl: calc(var(--radius) * 2.6);
+
+  /* riff design tokens -- see the design lock in AGENTS.md */
+  --color-riff-accent: var(--riff-accent);
+  --color-riff-accent-soft: var(--riff-accent-soft);
+  --color-riff-accent-soft-opaque: var(--riff-accent-soft-opaque);
+  --color-riff-desk: var(--riff-desk);
+  --color-riff-panel: var(--riff-panel);
+  --color-riff-bg: var(--riff-bg);
+  --color-riff-text: var(--riff-text);
+  --color-riff-muted: var(--riff-muted);
+  --color-riff-faint: var(--riff-faint);
+  --color-riff-hairline: var(--riff-hairline);
+  --color-riff-hairline-strong: var(--riff-hairline-strong);
+  --color-riff-keyframe: var(--riff-keyframe);
+  --color-riff-danger: var(--riff-danger);
+  --color-riff-good: var(--riff-good);
+  --color-riff-guide: var(--riff-guide);
+
+  /* Surfaces are black alphas, not a grey ramp: one set composes correctly
+     over both the white panels and the grey desk. */
+  --color-riff-fill-subtle: var(--riff-fill-subtle);
+  --color-riff-fill: var(--riff-fill);
+  --color-riff-fill-track: var(--riff-fill-track);
+  --color-riff-fill-hover: var(--riff-fill-hover);
+  --color-riff-fill-strong: var(--riff-fill-strong);
+  --color-riff-fill-strong-hover: var(--riff-fill-strong-hover);
+  --color-riff-grip: var(--riff-grip);
+  --color-riff-grip-on-accent: var(--riff-grip-on-accent);
+
+  /* Prefixed so they cannot collide with the shadcn --radius-* scale above. */
+  --radius-riff-sm: var(--riff-r-sm);
+  --radius-riff-md: var(--riff-r-md);
+  --radius-riff-lg: var(--riff-r-lg);
+  --radius-riff-btn: var(--riff-r-btn);
+  --radius-riff-panel: var(--riff-r-panel);
+  --radius-riff-pill: var(--riff-r-pill);
+
+  --shadow-riff-pop: var(--riff-shadow-pop);
+  --shadow-riff-card: var(--riff-shadow-card);
+  --color-riff-panel-glass: var(--riff-panel-glass);
+  --ease-riff: var(--riff-ease-ui);
+  --ease-riff-press: var(--riff-ease);
+}
+
+:root {
+  --background: oklch(1 0 0);
+  --foreground: oklch(0.145 0 0);
+  --card: oklch(1 0 0);
+  --card-foreground: oklch(0.145 0 0);
+  --popover: oklch(1 0 0);
+  --popover-foreground: oklch(0.145 0 0);
+  --primary: oklch(0.205 0 0);
+  --primary-foreground: oklch(0.985 0 0);
+  --secondary: oklch(0.97 0 0);
+  --secondary-foreground: oklch(0.205 0 0);
+  --muted: oklch(0.97 0 0);
+  --muted-foreground: oklch(0.556 0 0);
+  --accent: oklch(0.97 0 0);
+  --accent-foreground: oklch(0.205 0 0);
+  --destructive: oklch(0.577 0.245 27.325);
+  --border: oklch(0.922 0 0);
+  --input: oklch(0.922 0 0);
+  --ring: oklch(0.708 0 0);
+  --chart-1: oklch(0.87 0 0);
+  --chart-2: oklch(0.556 0 0);
+  --chart-3: oklch(0.439 0 0);
+  --chart-4: oklch(0.371 0 0);
+  --chart-5: oklch(0.269 0 0);
+  --radius: 0.625rem;
+  --sidebar: oklch(0.985 0 0);
+  --sidebar-foreground: oklch(0.145 0 0);
+  --sidebar-primary: oklch(0.205 0 0);
+  --sidebar-primary-foreground: oklch(0.985 0 0);
+  --sidebar-accent: oklch(0.97 0 0);
+  --sidebar-accent-foreground: oklch(0.205 0 0);
+  --sidebar-border: oklch(0.922 0 0);
+  --sidebar-ring: oklch(0.708 0 0);
+
+  /* --- riff design lock. Values decided in AGENTS.md; do not edit ad hoc. --- */
+  --riff-accent: #0a84ff; /* Apple system blue. Selection, active, primary. */
+  --riff-accent-soft: rgb(10 132 255 / 0.12); /* focus wells, chips, hints */
+  --riff-accent-soft-opaque: #e2f0ff; /* selected rows, drop-target fill */
+
+  --riff-desk: #e0e0e0; /* the plane the panels float on */
+  --riff-panel: #ffffff; /* every floating surface */
+  --riff-bg: #f5f5f5; /* artboard default, inert wells */
+
+  --riff-text: #1d1d1f;
+  --riff-muted: #86868b;
+  --riff-faint: #aeaeb2;
+
+  --riff-hairline: rgb(0 0 0 / 0.07); /* dividers inside a panel */
+  --riff-hairline-strong: rgb(0 0 0 / 0.12); /* dividers that must separate */
+
+  --riff-keyframe: #48484a; /* unselected keyframe diamond */
+  --riff-danger: #ff3b30; /* destructive, and auto-key armed */
+  --riff-good: #248a3d;
+  --riff-guide: #ff3b30; /* snap guides only */
+
+  --riff-fill-subtle: rgb(0 0 0 / 0.035);
+  --riff-fill: rgb(0 0 0 / 0.04);
+  --riff-fill-track: rgb(0 0 0 / 0.045);
+  --riff-fill-hover: rgb(0 0 0 / 0.06);
+  --riff-fill-strong: rgb(0 0 0 / 0.12);
+  --riff-fill-strong-hover: rgb(0 0 0 / 0.18); /* clip bar hover */
+  --riff-grip: rgb(0 0 0 / 0.3); /* trim pips on a grey clip */
+  --riff-grip-on-accent: rgb(255 255 255 / 0.8); /* trim pips on a blue clip */
+
+  --riff-r-sm: 4px;
+  --riff-r-md: 6px;
+  --riff-r-lg: 8px;
+  --riff-r-btn: 10px;
+  --riff-r-panel: 16px;
+  --riff-r-pill: 999px;
+
+  /* Transient surfaces: menus, popovers, dialogs, drag ghosts. */
+  --riff-shadow-pop: 0 12px 40px rgb(0 0 0 / 0.14);
+
+  /*
+   * Floating panels.
+   *
+   * The panels are cards of frosted glass over one continuous canvas, so the
+   * artwork reads as the whole surface and the chrome as something laid on top
+   * of it. The hairline is inside the shadow rather than a border so it never
+   * takes part in layout.
+   */
+  --riff-panel-glass: rgb(255 255 255 / 0.74);
+  --riff-shadow-card:
+    0 0 0 0.5px rgb(0 0 0 / 0.07), 0 1px 2px rgb(0 0 0 / 0.04),
+    0 16px 40px rgb(0 0 0 / 0.08);
+  --riff-blur: 28px;
+
+  /* Press feedback curve, and the shorter curve for hover/focus. */
+  --riff-ease: cubic-bezier(0.23, 1, 0.32, 1);
+  --riff-ease-ui: cubic-bezier(0.2, 0, 0, 1);
+}
+
+.dark {
+  --background: oklch(0.145 0 0);
+  --foreground: oklch(0.985 0 0);
+  --card: oklch(0.205 0 0);
+  --card-foreground: oklch(0.985 0 0);
+  --popover: oklch(0.205 0 0);
+  --popover-foreground: oklch(0.985 0 0);
+  --primary: oklch(0.922 0 0);
+  --primary-foreground: oklch(0.205 0 0);
+  --secondary: oklch(0.269 0 0);
+  --secondary-foreground: oklch(0.985 0 0);
+  --muted: oklch(0.269 0 0);
+  --muted-foreground: oklch(0.708 0 0);
+  --accent: oklch(0.269 0 0);
+  --accent-foreground: oklch(0.985 0 0);
+  --destructive: oklch(0.704 0.191 22.216);
+  --border: oklch(1 0 0 / 10%);
+  --input: oklch(1 0 0 / 15%);
+  --ring: oklch(0.556 0 0);
+  --chart-1: oklch(0.87 0 0);
+  --chart-2: oklch(0.556 0 0);
+  --chart-3: oklch(0.439 0 0);
+  --chart-4: oklch(0.371 0 0);
+  --chart-5: oklch(0.269 0 0);
+  --sidebar: oklch(0.205 0 0);
+  --sidebar-foreground: oklch(0.985 0 0);
+  --sidebar-primary: oklch(0.488 0.243 264.376);
+  --sidebar-primary-foreground: oklch(0.985 0 0);
+  --sidebar-accent: oklch(0.269 0 0);
+  --sidebar-accent-foreground: oklch(0.985 0 0);
+  --sidebar-border: oklch(1 0 0 / 10%);
+  --sidebar-ring: oklch(0.556 0 0);
+}
+
+@layer base {
+  * {
+    @apply border-border outline-ring/50;
+  }
+  body {
+    background-color: var(--riff-desk);
+    color: var(--riff-text);
+  }
+  html {
+    @apply font-sans;
+  }
+}
+/*
+ * Press feedback, as one utility.
+ *
+ * A global 4% scale-down on :active is most of why a dense editor feels
+ * physical rather than flat. Transform is listed explicitly so a press never
+ * animates a layout property.
+ */
+/*
+ * A floating panel.
+ *
+ * `backdrop-filter` is the whole point: the canvas stays one continuous surface
+ * and the panels sit on it. The opaque fallback matters because a browser
+ * without backdrop-filter would otherwise render the chrome as a see-through
+ * smear over the artwork.
+ */
+@utility riff-glass {
+  background-color: var(--riff-panel);
+  box-shadow: var(--riff-shadow-card);
+
+  @supports (backdrop-filter: blur(1px)) or
+    (-webkit-backdrop-filter: blur(1px)) {
+    background-color: var(--riff-panel-glass);
+    -webkit-backdrop-filter: blur(var(--riff-blur)) saturate(180%);
+    backdrop-filter: blur(var(--riff-blur)) saturate(180%);
+  }
+}
+
+@utility press {
+  transition-property: transform, background-color, color, opacity;
+  transition-duration: 140ms;
+  transition-timing-function: var(--riff-ease);
+
+  &:active:not(:disabled) {
+    transform: scale(0.96);
+  }
+}
+
+/*
+ * A scrollbar you can see.
+ *
+ * Overlay scrollbars only appear once you already know to scroll, and the two
+ * places that overflow most (the inspector and the parts column) are exactly
+ * the places where a user concludes the missing controls do not exist. A thin
+ * permanent thumb costs 4px and answers the question.
+ */
+@utility riff-scroll {
+  scrollbar-width: thin;
+  scrollbar-color: rgb(0 0 0 / 0.22) transparent;
+
+  &::-webkit-scrollbar {
+    width: 10px;
+    height: 10px;
+  }
+  &::-webkit-scrollbar-track {
+    background: transparent;
+  }
+  &::-webkit-scrollbar-thumb {
+    border: 3px solid transparent;
+    border-radius: 999px;
+    background: rgb(0 0 0 / 0.2);
+    background-clip: padding-box;
+  }
+  &::-webkit-scrollbar-thumb:hover {
+    background: rgb(0 0 0 / 0.34);
+    background-clip: padding-box;
+  }
+}
+
+/*
+ * The timeline's horizontal scrollbar must not run under the sticky layer
+ * column.
+ */
+.timeline-scroll::-webkit-scrollbar-track:horizontal {
+  margin-left: 220px;
+}
+
+/*
+ * Reserve the vertical scrollbar's gutter even when there is nothing to
+ * scroll. Without this the lane changes width the moment a layer is added,
+ * which moves the filmstrip ruler under the pointer mid-scrub and is a layout
+ * shift the quality floor forbids.
+ */
+.timeline-scroll {
+  scrollbar-gutter: stable;
+}
+
+/*
+ * Reduced motion. The design lock drops functional feedback to 1ms but never
+ * touches playback of the user's own animation -- that is content, not
+ * decoration -- so anything inside a `data-riff-content` subtree is exempt.
+ */
+@media (prefers-reduced-motion: reduce) {
+  /* A reduced-motion floor has to beat every utility that sets a duration,
+     which is the case !important exists for. */
+  /* biome-ignore-start lint/complexity/noImportantStyles: reduced-motion floor */
+  *:not([data-riff-content], [data-riff-content] *) {
+    animation-duration: 1ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 1ms !important;
+    scroll-behavior: auto !important;
+  }
+  /* .press scales on :active; a duration floor does not remove a transform. */
+  .press:active:not(:disabled) {
+    transform: none !important;
+  }
+  /* biome-ignore-end lint/complexity/noImportantStyles: reduced-motion floor */
+}

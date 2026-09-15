@@ -1,0 +1,4 @@
+[test]
+# ref/ holds cloned reference projects, each with its own suite. Without this,
+# `bun test` runs theirs alongside ours and reports their failures as ours.
+root = "./src"
